@@ -6,7 +6,8 @@ from .models import Poll
 
 # Create your views here.
 def home(request):
-    context={}
+    polls=Poll.objects.all()
+    context={'polls':polls}
     return render(request,"polls/home.html",context)
 
 def create(request):
@@ -18,7 +19,7 @@ def create(request):
             return redirect('home')
     else:
         form=CreatePollForm()
-        
+
     context={
         'form':form
     }
